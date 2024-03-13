@@ -23,14 +23,14 @@ module.exports = {
       name: '@electron-forge/maker-deb',
       config: {
         options: {
-          icon: 'https://terabit.io/images/icon.png'
+          icon: 'content/resources/icon.png'
         }
       },
     },
     {
       name: '@electron-forge/maker-rpm',
       config: {
-        icon: 'https://terabit.io/images/icon.png'
+        icon: 'content/resources/icon.png'
       },
     },
   ],
