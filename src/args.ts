@@ -1,4 +1,4 @@
-export function IsDevToolsEnabled() {
+export function IsDevMode() {
     return process.argv.includes("--dev-mode");
 }
 

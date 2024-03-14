@@ -4,15 +4,15 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: 'content/resources/icon'
+    icon: 'resources/common/icon'
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        icon: 'content/resources/logo.ico',
-        setupIcon: 'content/resources/icon.ico'
+        icon: 'resources/win32/icon.ico',
+        setupIcon: 'resources/win32/icon.ico'
       }
     },
     {
@@ -23,14 +23,14 @@ module.exports = {
       name: '@electron-forge/maker-deb',
       config: {
         options: {
-          icon: 'content/resources/icon.png'
+          icon: 'resources/common/icon.png'
         }
       },
     },
     {
       name: '@electron-forge/maker-rpm',
       config: {
-        icon: 'content/resources/icon.png'
+        icon: 'resources/common/icon.png'
       },
     },
   ],
