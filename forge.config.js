@@ -13,7 +13,7 @@ module.exports = {
       config: {
         icon: 'content/resources/logo.ico',
         setupIcon: 'content/resources/icon.ico'
-      },
+      }
     },
     {
       name: '@electron-forge/maker-zip',

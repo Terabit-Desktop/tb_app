@@ -1,13 +1,14 @@
 {
   "name": "terabit_desktop",
+  "productName":"Terabit Desktop",
   "version": "1.0.0",
   "description": "Terabit Hosting Management Panel for Desktop.",
-  "main": "core/app/index.js",
+  "main": "./src/out/tbsdk/main.js",
   "scripts": {
-    "start": "electron-forge start",
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "start": "tsc -p ./src/tsconfig.json && electron-forge start",
+    "test": "tsc -p ./src/tsconfig.json && electron-forge start",
+    "package": "tsc -p ./src/tsconfig.json && electron-forge package",
+    "make": "tsc -p ./src/tsconfig.json && electron-forge make"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
   },
   "dependencies": {
     "electron-builder": "^24.13.3",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "typescript": "^5.4.2"
   }
 }
