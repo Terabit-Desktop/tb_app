@@ -15,7 +15,8 @@ const CreateViewport = () => {
         },
     });
     Viewport.menuBarVisible = false;
-    Viewport.loadURL("https://gaming.terabit.io/");
+    console.log(GetRequestUrl());
+    Viewport.loadURL(GetRequestUrl());
 }
 
 const DevToolsEnabled = () => {
@@ -23,6 +24,12 @@ const DevToolsEnabled = () => {
         if (process.argv.includes("--dev-mode"))
             return true;
     return false;
+}
+
+const GetRequestUrl = () => {
+    if (process.argv != null && process.argv.at(0) != null && process.argv.at(0).startsWith("https://"))
+            return process.argv.at(0);
+    return "https://gaming.terabit.io/";
 }
 
 // ----- ELECTRON FUNCTIONS -----
