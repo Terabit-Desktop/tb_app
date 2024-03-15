@@ -12,6 +12,7 @@ export function StartWindow() {
             scrollBounce: true,
         },
     });
+    MainWindow.setMenuBarVisibility(false);
     MainWindow.loadURL(GetHardCodedUrl());
 }
 
