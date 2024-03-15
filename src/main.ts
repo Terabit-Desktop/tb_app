@@ -8,3 +8,13 @@ app.whenReady().then(()=> {
     StartWindow();
     console.log(process.argv);
 });
+
+app.on('web-contents-created', (event, contents) => {
+    contents.on('will-navigate', (event, navigationUrl) => {
+        const parsedUrl = new URL(navigationUrl)
+        const allowedOrigin = 'terabit.io';
+        if (!parsedUrl.origin.endsWith(allowedOrigin)) {
+            event.preventDefault();
+        }
+    })
+})

@@ -1,6 +1,6 @@
 {
   "name": "terabit_desktop",
-  "productName":"Terabit Desktop",
+  "productName": "Terabit Desktop",
   "version": "1.0.0",
   "description": "Terabit Hosting Management Panel for Desktop.",
   "main": "./src/out/tbsdk/main.js",
@@ -46,7 +46,9 @@
         "protocols": [
           {
             "name": "Terabit Dashboard",
-            "schemes": ["terabit"]
+            "schemes": [
+              "terabit"
+            ]
           }
         ]
       },
@@ -54,7 +56,9 @@
         {
           "name": "@electron-forge/maker-deb",
           "config": {
-            "mimeType": ["x-scheme-handler/terabit"]
+            "mimeType": [
+              "x-scheme-handler/terabit"
+            ]
           }
         }
       ]

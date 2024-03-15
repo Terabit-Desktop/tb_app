@@ -11,6 +11,7 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       config: {
+        name: 'Terabit Desktop',
         icon: 'resources/win32/icon.ico',
         setupIcon: 'resources/win32/icon.ico'
       }
