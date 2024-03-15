@@ -39,5 +39,25 @@
     "electron-builder": "^24.13.3",
     "electron-squirrel-startup": "^1.0.0",
     "typescript": "^5.4.2"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "protocols": [
+          {
+            "name": "Terabit Dashboard",
+            "schemes": ["terabit"]
+          }
+        ]
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "mimeType": ["x-scheme-handler/terabit"]
+          }
+        }
+      ]
+    }
   }
 }
