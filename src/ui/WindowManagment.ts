@@ -7,12 +7,12 @@ export function StartWindow() {
         width: 1366,
         height: 720,
         webPreferences: {
-            devTools: !process.argv.includes('--dev-mode'),
+            devTools: process.argv.includes('--dev-mode'),
             webgl: !process.argv.includes('--disable-webgl'),
             scrollBounce: true,
         },
     });
-    MainWindow.loadURL(HandleURL());
+    MainWindow.loadURL(GetHardCodedUrl());
 }
 
 app.on('window-all-closed', () => {
@@ -34,7 +34,7 @@ const domains = [
     'terabit://'
 ];
 
-function HandleURL(): string {
+function GetHardCodedUrl(): string {
     const args = process.argv.slice(2);
     const url = args.find(arg => domains.some(domain => arg.startsWith(domain))) || 'https://gaming.terabit.io/';
     
