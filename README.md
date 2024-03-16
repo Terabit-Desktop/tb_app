@@ -6,11 +6,7 @@ To get started, just run the setup application found in the [releases](https://g
 
 ## Using
 
-| Argument      | Description |
-| ----------- | ----------- |
-| `--client-area` | Opens [https://my.terabit.io/](https://my.terabit.io/)|
-| `--dash-area`   | Opens [https://gaming.terabit.io/](https://gaming.terabit.io/)|
-| `--dev-mode`   | Enable's developer features.|
+
 
 ## Contributing
 If you wish to contribute, all the help I can get is greatly appreciated. Every little bit helps. If that includes implimenting more features, or designing the apps, feel free to make a PR.
