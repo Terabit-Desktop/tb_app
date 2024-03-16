@@ -28,6 +28,8 @@ export function StartWindow() {
                 { label: 'Dashboard', click: () => { MainWindow.loadURL("https://gaming.terabit.io/"); }},
                 { label: 'Client Area', click: () => { MainWindow.loadURL("https://my.terabit.io/"); }},
                 { label: 'Admin Area', click: () => { MainWindow.loadURL("https://gaming.terabit.io/admin"); }},
+                { label: 'Tenantos', click: () => { MainWindow.loadURL("https://dcs.terabit.io/")}},
+                { label: 'VirtFusion', click: () => { MainWindow.loadURL("https://vps.terabit.io/")}},
             ]
         }
     ];
@@ -66,6 +68,14 @@ function GetHardCodedUrl(): string {
     if (url.startsWith('terabit://')) {
         const path = url.replace('terabit://', '');
         return `https://gaming.terabit.io/${path}`;
+    }
+    if (url.startsWith('terabit://dcs')) {
+        const path = url.replace("terabit://dcs", '');
+        return `https://dcs.terabit.io/${path}`;
+    }
+    if (url.startsWith('terabit://vps')) {
+        const path = url.replace('terabit://vps', '');
+        return `https://vps.terabit.io/${path}`;
     }
 
     return url;
