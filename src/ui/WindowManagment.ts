@@ -59,15 +59,10 @@ const domains = [
 ];
 
 function GetHardCodedUrl(): string {
-    const args = process.argv.slice(2);
+    const args = process.argv;
     const url = args.find(arg => domains.some(domain => arg.startsWith(domain))) || 'https://gaming.terabit.io/';
-    
     if (url.startsWith('terabit://my')) {
         return 'https://my.terabit.io/'
-    }
-    if (url.startsWith('terabit://')) {
-        const path = url.replace('terabit://', '');
-        return `https://gaming.terabit.io/${path}`;
     }
     if (url.startsWith('terabit://dcs')) {
         const path = url.replace("terabit://dcs", '');
@@ -77,6 +72,11 @@ function GetHardCodedUrl(): string {
         const path = url.replace('terabit://vps', '');
         return `https://vps.terabit.io/${path}`;
     }
+    if (url.startsWith('terabit://')) {
+        const path = url.replace('terabit://', '');
+        return `https://gaming.terabit.io/${path}`;
+    }
 
+    console.log(`returning ${url}`);
     return url;
 }
