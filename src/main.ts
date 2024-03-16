@@ -1,9 +1,10 @@
 import { app } from 'electron'
 import { StartWindow } from "./ui/WindowManagment";
 import { AssignProtocolHandler } from './handlers/ProtocolHandler';
+import { Version } from './core';
 
 app.whenReady().then(()=> {
-    console.log(`Loading: Terabit Desktop | v0.0.2...`); // Version 0.0.2 (Complete Rewrite for the 8th time.)
+    console.log(`Loading: Terabit Desktop | v${Version.VERSION_MAJOR}.${Version.VERSION_MINOR}.${Version.VERSION_BUILD} - '${Version.VERSION_CODENAME}'...`);
     AssignProtocolHandler();
     StartWindow();
     console.log(process.argv);
@@ -14,7 +15,7 @@ app.on('web-contents-created', (event, contents) => {
         const parsedUrl = new URL(navigationUrl)
         const allowedOrigin = 'terabit.io';
         if (!parsedUrl.origin.endsWith(allowedOrigin)) {
-            event.preventDefault();
+            event.preventDefault(); // Stops any urls with origins outside of terabit.io from loading.
         }
     })
 })

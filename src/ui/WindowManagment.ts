@@ -1,4 +1,5 @@
-import { app, BrowserWindow, shell } from 'electron';
+import { app, BrowserWindow, shell, Menu } from 'electron';
+import path from 'path'
 
 export let MainWindow: BrowserWindow;
 
@@ -6,13 +7,33 @@ export function StartWindow() {
     const MainWindow = new BrowserWindow({
         width: 1366,
         height: 720,
+        icon: "/res/icon.png",
         webPreferences: {
             devTools: process.argv.includes('--dev-mode'),
             webgl: !process.argv.includes('--disable-webgl'),
             scrollBounce: true,
         },
     });
-    MainWindow.setMenuBarVisibility(false);
+
+    const template: (Electron.MenuItemConstructorOptions | Electron.MenuItem)[] = [
+        {
+            label: 'Terabit Desktop',
+            submenu: [
+                { label: 'Quit', click: () => { app.exit() }}
+            ]
+        },
+        {
+            label: 'Navigation',
+            submenu: [
+                { label: 'Dashboard', click: () => { MainWindow.loadURL("https://gaming.terabit.io/"); }},
+                { label: 'Client Area', click: () => { MainWindow.loadURL("https://my.terabit.io/"); }},
+                { label: 'Admin Area', click: () => { MainWindow.loadURL("https://gaming.terabit.io/admin"); }},
+            ]
+        }
+    ];
+    const menu = Menu.buildFromTemplate(template);
+    Menu.setApplicationMenu(menu);
+
     MainWindow.loadURL(GetHardCodedUrl());
 }
 
