@@ -1,6 +1,6 @@
 {
   "name": "terabit_desktop",
-  "productName": "Terabit Desktop",
+  "productName": "TerabitDesktop",
   "version": "1.0.0",
   "description": "Terabit Hosting Management Panel for Desktop.",
   "main": "./src/out/tbsdk/main.js",
