@@ -1,15 +1,15 @@
 import { app } from 'electron'
-import { AssignProtocolHandler } from './handlers/ProtocolHandler';
+import { AssignProtocolHandler } from './tbd/ProtocolHandler';
 import { Window } from './tbd/ui/Window';
-import { Version } from './tbd/Version';
+import { AppInfo, Version } from './tbd/Version';
 
 let SplashWindow: Window;
 let ParentWindow: Window;
 
-app.whenReady().then(()=> {
-    console.log(`Loading: Terabit Desktop | v${Version.VERSION_MAJOR}.${Version.VERSION_MINOR}.${Version.VERSION_BUILD} - '${Version.VERSION_CODENAME}'...`);
+app.whenReady().then(() => {
+    console.log(`Loading: ${AppInfo.APP_NAME} | v${Version.VERSION_MAJOR}.${Version.VERSION_MINOR}.${Version.VERSION_BUILD} - '${Version.VERSION_CODENAME}'...`);
     SplashWindow = new Window(undefined, 620, 300, true);
-    SplashWindow.Get()?.loadFile(`file://${__dirname}/splash.html`);
+    SplashWindow.Get()?.loadFile(`splash.html`);
     SplashWindow.Show();
     AssignProtocolHandler();
     

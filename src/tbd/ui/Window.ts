@@ -1,10 +1,12 @@
 import { BrowserWindow, Menu, app } from 'electron';
 import { AppUrlManager } from './AppUrlManager';
+import { FactorySettings } from '../FactorySettings';
 
 export class Window {
     private Target: BrowserWindow;
     constructor(Parent: BrowserWindow | undefined, Width: number, Height: number, IsSplash: boolean = false) {
         this.Target = new BrowserWindow({ width: Width, height: Height, title: "Terabit Desktop", transparent: IsSplash, frame: !IsSplash, alwaysOnTop: IsSplash, resizable: !IsSplash ,parent: Parent, webPreferences: { nodeIntegration: true, webgl: process.argv.includes("--disable-webgl"), devTools: process.argv.includes("--dev-tools"), scrollBounce: !IsSplash }});
+        this.Target.maximize();
         this.ConfigureEvents();
         this.ConfigureMenu();
     }
@@ -25,9 +27,13 @@ export class Window {
     public Load(url?: string): void;
     public Load(url?: string): void {
         if (url)
-            this.Target.loadURL(url);
+            this.Target.loadURL(url).catch((result) => {
+                this.Target.loadFile(`file://${__dirname}/error.html`);
+            });
         else
-            this.Target.loadURL(AppUrlManager.GetUrl());
+            this.Target.loadURL(AppUrlManager.GetUrl()).catch((result) => {
+                this.Target.loadFile(`file://${__dirname}/error.html`);
+            });
     }
     
     // Configure Events
@@ -59,6 +65,11 @@ export class Window {
             {
                 label: 'Terabit Desktop',
                 submenu: [
+                    { label: 'Options', submenu: [
+                        { label: 'Clear Cache', click: () => { FactorySettings.ResetCache(); }},
+                        { label: 'Reset Application', click: () => { FactorySettings.ResetApplication(); }},
+                    ]},
+                    { type: 'separator' },
                     { label: 'Quit', click: () => { app.exit() }, accelerator: 'CmdOrCtrl+Q'}
                 ]
             },
@@ -77,6 +88,8 @@ export class Window {
                 label: 'Window',
                 submenu: [
                     { label: 'Reload', click: () => { this.Target.reload(); }, accelerator: 'CmdOrCtrl+R'},
+                    { label: 'Full Reload', click: () => { this.Target.webContents.reloadIgnoringCache(); }, accelerator: 'CmdOrCtrl+Alt+R'},
+                    { type: 'separator', visible: true },
                     { label: 'Back', click: () => { this.Target.webContents.goBack(); }, accelerator: 'CmdOrCtrl+Left'},
                     { label: 'Forward', click: () => { this.Target.webContents.goForward(); }, accelerator: 'CmdOrCtrl+Right'},
                     { type: 'separator', visible: true },
