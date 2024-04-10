@@ -1,14 +1,18 @@
 import { BrowserWindow, Menu, app } from 'electron';
 import { AppUrlManager } from './AppUrlManager';
 import { FactorySettings } from '../FactorySettings';
+import {Logging} from "../Logging";
 
 export class Window {
     private Target: BrowserWindow;
     constructor(Parent: BrowserWindow | undefined, Width: number, Height: number, IsSplash: boolean = false) {
-        this.Target = new BrowserWindow({ width: Width, height: Height, title: "Terabit Desktop", transparent: IsSplash, frame: !IsSplash, alwaysOnTop: IsSplash, resizable: !IsSplash ,parent: Parent, webPreferences: { nodeIntegration: true, webgl: process.argv.includes("--disable-webgl"), devTools: process.argv.includes("--dev-tools"), scrollBounce: !IsSplash }});
+        this.Target = new BrowserWindow({ width: Width, height: Height, title: "Terabit Desktop", transparent: IsSplash, frame: !IsSplash, alwaysOnTop: IsSplash, resizable: !IsSplash ,parent: Parent, webPreferences: { nodeIntegration: true, webgl: process.argv.includes("--disable-webgl"), devTools: true /* process.argv.includes("--dev-tools") */, scrollBounce: !IsSplash }});
+        this.Target.setBackgroundColor("#0b0d2a");
         this.Target.maximize();
         this.ConfigureEvents();
         this.ConfigureMenu();
+
+        Logging.Debug(`A new window was created. Title: ${this.Target.title}`);
     }
 
     public Show(): void {

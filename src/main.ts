@@ -2,14 +2,22 @@ import { app } from 'electron'
 import { AssignProtocolHandler } from './tbd/ProtocolHandler';
 import { Window } from './tbd/ui/Window';
 import { AppInfo, Version } from './tbd/Version';
+import {OperatingSystem} from "./tbd/OperatingSystem";
+import {Logging} from "./tbd/Logging";
 
 let SplashWindow: Window;
 let ParentWindow: Window;
 
+
 app.whenReady().then(() => {
-    console.log(`Loading: ${AppInfo.APP_NAME} | v${Version.VERSION_MAJOR}.${Version.VERSION_MINOR}.${Version.VERSION_BUILD} - '${Version.VERSION_CODENAME}'...`);
+    Logging.Info(`Loading: ${AppInfo.APP_NAME} | v${Version.VERSION_MAJOR}.${Version.VERSION_MINOR}.${Version.VERSION_BUILD} - '${Version.VERSION_CODENAME}'...`);
+    Logging.Info(`Running on '${OperatingSystem.GetHumanFriendlyOS()}' (${OperatingSystem.CurrentArch}).`);
+    // --------------------------------- Splash Screen ---------------------------------
     SplashWindow = new Window(undefined, 620, 300, true);
-    SplashWindow.Get()?.loadFile(`splash.html`);
+    SplashWindow.Get()?.loadFile(`${__dirname}/splash.html`).catch((result) => {
+        Logging.Error(`There was an error getting 'splash.html'. ${result}`);
+    });
+    // ---------------------------------------------------------------------------------
     SplashWindow.Show();
     AssignProtocolHandler();
     
@@ -23,13 +31,14 @@ app.whenReady().then(() => {
 app.on('web-contents-created', (event, contents) => {
     contents.on('will-navigate', (event, navigationUrl) => {
         const parsedUrl = new URL(navigationUrl)
-        const allowedOrigins = ['terabit.io', 'discord.com']; // Dicord for the Dicord Invite, Terabit.io for the main site and the admin panel.
+        const allowedOrigins = ['terabit.io', 'discord.com', 'terabit.io:8080']; // Allow Discord for the Discord invite, Allow Terabit.io for the main site and the admin panel.
         allowedOrigins.forEach(element => {
             if (!parsedUrl.origin.endsWith(element)) {
-                event.preventDefault(); // Stops any urls with origins outside of terabit.io or discord.com from loading.
+                Logging.Warn(`${element} lead to a URL outside of the allowed origin.`);
+                event.preventDefault(); // Stops any urls with origins outside terabit.io or discord.com from loading.
             }
         });
-    })
+    });
 });
 
 app.on('window-all-closed', () => {
