@@ -8,7 +8,9 @@
     "test": "tsc -p ./src/tsconfig.json && electron .",
     "build-win": "electron-packager . --platform=win32 --asar --icon=content/resources/icon --path=out/ --overwrite",
     "build-linux": "electron-packager . --platform=linux --asar --icon=content/resources/icon --path=out/ --overwrite",
-    "ibuild-win": "npm run build-win && electron-installer-windows --src Terabit Desktop-win32-x64/ --icon content/logo.ico --dest out/releases/"
+    "ibuild-win": "npm run build-win && electron-installer-windows --src Terabit Desktop-win32-x64/ --icon content/logo.ico --dest out/releases/",
+    "prettier": "prettier --check \"./**/*.{ts,tsx,js}\"",
+    "prettier-fix": "prettier . --write"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
     "electron-installer-dmg": "^4.0.0",
     "electron-installer-windows": "^3.0.0",
     "electron-packager": "^17.1.2",
+    "prettier": "^3.2.5",
     "typescript": "^5.4.2"
   }
 }
