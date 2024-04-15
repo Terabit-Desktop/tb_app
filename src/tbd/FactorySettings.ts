@@ -2,10 +2,10 @@ import { BrowserWindow, app } from "electron";
 const { dialog } = require("electron");
 import * as fs from "fs";
 import * as path from "path";
-import { Logging } from "./Logging";
+import { Log, LogLevel } from "../libs/logging/log";
 
 export class FactorySettings {
-  static ResetApplication(): void {
+  public static ResetApplication(): void {
     dialog
       .showMessageBox(BrowserWindow.getAllWindows()[0], {
         type: "warning",
@@ -21,9 +21,7 @@ export class FactorySettings {
           const getAppPath = path.join(app.getPath("appData"), app.getName());
 
           fs.unlink(getAppPath, () => {
-            Logging.Info(
-              "The cache has been cleared successfully. We just need to relaunch to apply any needed changes.",
-            );
+            Log.Write(LogLevel.INFO, "The cache has been cleared successfully. We just need to relaunch to apply any needed changes.");
             app.relaunch();
           });
         }
