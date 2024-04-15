@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: npm prettier-fix
+    - run: npm run prettier-fix
     - run: npm run build-linux --if-present
 
   build-win:
@@ -39,5 +39,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: prettier-fix
+    - run: npm run prettier-fix
     - run: npm run build-win --if-present
