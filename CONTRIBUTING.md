@@ -35,3 +35,8 @@ Here's a quick guide to setting your copy of the Terabit Desktop source code set
   - Open the local repository using your code editor of choice.
   - run `npm install`.
 - Testing
+  - run `npm test` to run the electron app without needing to build it prior.
+
+## Final Notes
+You can edit this document if you'd like, but by editing this document, I (ALEXWARELLC) will need to review your entire PR.
+>  #### Have Fun - ALEXWARELLC
