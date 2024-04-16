@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Oxanium';
+    src: url('fonts/Oxanium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Oxanium', sans-serif;
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word;
+}

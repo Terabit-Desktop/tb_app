@@ -1,5 +1,4 @@
-import fs from 'fs';
-import { app, BrowserWindow } from "electron";
+import { BrowserWindow } from "electron";
 
 export class Window {
   private Target: BrowserWindow | undefined;
@@ -20,7 +19,7 @@ export class Window {
   }
 
   public Get(): BrowserWindow | undefined { return this.Target!; }
-  public Load(IsUrl: boolean, URL: string): void { IsUrl ? this.Target?.loadURL(URL) : this.Target?.loadFile(URL); }
+  public Load(IsUrl: boolean, URL: string): void { IsUrl ? this.Target?.loadURL(URL).catch((error) => { this.Load(false, `${__dirname}/../../libs/ui/errors/nointernet.html`); }) : this.Target?.loadFile(URL)};
   public Show(): void { this.Target?.show(); }
   public Destroy(): void { this.Target?.close(); }
 }
