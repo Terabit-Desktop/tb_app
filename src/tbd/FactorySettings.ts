@@ -21,7 +21,10 @@ export class FactorySettings {
           const getAppPath = path.join(app.getPath("appData"), app.getName());
 
           fs.unlink(getAppPath, () => {
-            Log.Write(LogLevel.INFO, "The cache has been cleared successfully. We just need to relaunch to apply any needed changes.");
+            Log.Write(
+              LogLevel.INFO,
+              "The cache has been cleared successfully. We just need to relaunch to apply any needed changes.",
+            );
             app.relaunch();
           });
         }
