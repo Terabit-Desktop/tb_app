@@ -3,7 +3,7 @@
   "productName": "Terabit Desktop",
   "version": "1.0.0",
   "description": "Terabit Hosting Management Panel for Desktop.",
-  "main": "./build/main.js",
+  "main": "./build/main-process/main.js",
   "scripts": {
     "build-typescript": "tsc -p ./src/tsconfig.json",
     "test": "npm run build-typescript && electron .",
