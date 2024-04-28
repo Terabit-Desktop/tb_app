@@ -2,6 +2,7 @@ import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
 import { BuildMenu } from './menu/MenuBuilder';
 import { Log, LogLevel } from '../libs/logging/log';
 import { NavigationTools } from './NavigationTools';
+import path from 'path';
 
 export class AppWindow {
     private Window: BrowserWindow | null = null;
@@ -16,8 +17,14 @@ export class AppWindow {
             frame: !SplashScreen,
             show: false,
             webPreferences: {
-                nodeIntegration: true,
-                contextIsolation: false
+                nodeIntegration: false,
+                nodeIntegrationInWorker: true,
+                contextIsolation: true,
+                devTools: true,//process.argv.includes("--dev-mode"),
+                webgl: true,
+                webSecurity: true,
+                scrollBounce: true,
+                sandbox: false,
             }
         };
         this.Window = new BrowserWindow(WinConfig);
@@ -34,7 +41,7 @@ export class AppWindow {
         });
     }
 
-    public LoadUrl(URL: string): void {
+    public async LoadUrl(URL: string): Promise<void> {
         this.Window?.loadURL(URL).catch((error) => {
             Log.Write(LogLevel.ERROR, `Failed to load URL: ${error}.`);
             this.Window?.loadFile(`${__dirname}/../ui/errors/nointernet.html`);

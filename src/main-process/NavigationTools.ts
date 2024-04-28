@@ -5,7 +5,7 @@ export class NavigationTools {
     public static AddLinkRestrictions(Target: AppWindow): void {
         Target.GetWindow()?.webContents.on('will-navigate', (event, url) => {
             const parsedUrl = new URL(url);
-            const allowedOrigins = ["discord.com"]; // Allow Discord for the Discord invite
+            const allowedOrigins = ["discord.com", "unpkg.com"]; // Allow Discord for the Discord invite
             const allowedBaseDomain = "terabit.io";
 
             let CancelNavigation = !allowedOrigins.includes(parsedUrl.hostname) && !parsedUrl.hostname.endsWith(allowedBaseDomain);

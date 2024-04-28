@@ -8,7 +8,7 @@ let SplashWindow: AppWindow | null = null;
 let ParentWindow: AppWindow | null = null;
 
 protocol.registerSchemesAsPrivileged([
-    { scheme: 'terabit', privileges: { standard: true, secure: true, stream: true, bypassCSP: true } },
+    { scheme: 'terabit', privileges: { standard: true, secure: true, stream: true, bypassCSP: true, supportFetchAPI: true } },
 ])
 
 app.once('ready', () => {
@@ -51,7 +51,7 @@ app.once('ready', () => {
 app.on("web-contents-created", (_, contents) => {
     contents.on("will-navigate", (event, url) => {
       const parsedUrl = new URL(url);
-      const allowedOrigins = ["discord.com"]; // Allow Discord for the Discord invite
+      const allowedOrigins = ["discord.com", "terabit.io:8080", "jquery.com"]; // Allow Discord for the Discord invite
       const allowedBaseDomain = "terabit.io";
   
       let CancelNavigation =

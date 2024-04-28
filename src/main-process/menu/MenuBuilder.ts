@@ -55,6 +55,16 @@ export function BuildMenu(Target: AppWindow): Menu {
                     Target.GetWindow()?.webContents.reloadIgnoringCache();
                 },
                 accelerator: "CmdOrCtrl+Alt+R",
+            },
+            {
+                type: 'separator',
+            },
+            {
+                label: "Developer Tools",
+                click: () => {
+                    Target.GetWindow()?.webContents.openDevTools();
+                },
+                accelerator: "CmdOrCtrl+Shift+I",
             }
         ]
     };
