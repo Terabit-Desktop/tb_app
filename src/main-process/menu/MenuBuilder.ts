@@ -23,18 +23,14 @@ export function BuildMenu(Target: AppWindow): Menu {
             }
         ]
     };
-
-    template.push({ type: "separator" });
-
-    template.push(FileMenu);
-
+    
     const ViewMenu: Electron.MenuItemConstructorOptions = {
         label: "View",
         submenu: [
             {
                 label: "Back",
                 click: () => {
-                Target.GetWindow()?.webContents.goBack();
+                    Target.GetWindow()?.webContents.goBack();
                 },
                 accelerator: "CmdOrCtrl+Left",
             },
@@ -49,7 +45,7 @@ export function BuildMenu(Target: AppWindow): Menu {
             {
                 label: "Reload",
                 click: () => {
-                Target.GetWindow()?.reload();
+                    Target.GetWindow()?.reload();
                 },
                 accelerator: "CmdOrCtrl+R",
             },
@@ -62,31 +58,29 @@ export function BuildMenu(Target: AppWindow): Menu {
             }
         ]
     };
-
-    template.push(ViewMenu);
-
+    
     const NavigationMenu: Electron.MenuItemConstructorOptions = {
         label: "Navigation",
         submenu: [
             {
                 label: "Dashboard",
                 click: () => {
-                  Target.GetWindow()?.loadURL("https://gaming.terabit.io/");
-                  AppWindow.ApplyCSS(Target);
+                    Target.GetWindow()?.loadURL("https://gaming.terabit.io/");
+                    AppWindow.ApplyCSS(Target);
                 },
                 accelerator: "CmdOrCtrl+1",
             },
             {
                 label: "Client Area",
                 click: () => {
-                  Target.GetWindow()?.loadURL("https://my.terabit.io/aff.php?aff=10");
+                    Target.GetWindow()?.loadURL("https://my.terabit.io/aff.php?aff=10");
                 },
                 accelerator: "CmdOrCtrl+2",
             },
             {
                 label: "Admin Area",
                 click: () => {
-                  Target.GetWindow()?.loadURL("https://gaming.terabit.io/admin");
+                    Target.GetWindow()?.loadURL("https://gaming.terabit.io/admin");
                 },
                 accelerator: "CmdOrCtrl+3",
             },
@@ -94,20 +88,22 @@ export function BuildMenu(Target: AppWindow): Menu {
             {
                 label: "Tenantos",
                 click: () => {
-                  Target.GetWindow()?.loadURL("https://dcs.terabit.io/");
+                    Target.GetWindow()?.loadURL("https://dcs.terabit.io/");
                 },
                 accelerator: "CmdOrCtrl+4",
             },
             {
                 label: "VirtFusion",
                 click: () => {
-                  Target.GetWindow()?.loadURL("https://vps.terabit.io/");
+                    Target.GetWindow()?.loadURL("https://vps.terabit.io/");
                 },
                 accelerator: "CmdOrCtrl+5",
             },
         ]
     };
-
+    
+    template.push(FileMenu);
+    template.push(ViewMenu);
     template.push(NavigationMenu);
     
     return Menu.buildFromTemplate(template);
