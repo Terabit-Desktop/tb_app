@@ -2,7 +2,6 @@ import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
 import { BuildMenu } from './menu/MenuBuilder';
 import { Log, LogLevel } from '../libs/logging/log';
 import { NavigationTools } from './NavigationTools';
-import path from 'path';
 
 export class AppWindow {
     private Window: BrowserWindow | null = null;
@@ -13,14 +12,16 @@ export class AppWindow {
             width: SplashScreen ? 600 : 1024,
             height: SplashScreen ? 320 : 768,
             backgroundMaterial: 'acrylic',
-            maximizable: true,
             frame: !SplashScreen,
             show: false,
+            resizable: true,
+            maximizable: true,
+            transparent: true,
             webPreferences: {
                 nodeIntegration: false,
                 nodeIntegrationInWorker: true,
                 contextIsolation: true,
-                devTools: true,//process.argv.includes("--dev-mode"),
+                devTools: process.argv.includes("--dev-mode"),
                 webgl: true,
                 webSecurity: true,
                 scrollBounce: true,
