@@ -109,6 +109,13 @@ export function BuildMenu(Target: AppWindow): Menu {
                 },
                 accelerator: "CmdOrCtrl+5",
             },
+            {
+                label: "VirtFusion",
+                click: () => {
+                    Target.GetWindow()?.loadURL("https://google.com/");
+                },
+                accelerator: "CmdOrCtrl+6",
+            },
         ]
     };
     

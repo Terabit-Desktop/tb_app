@@ -3,6 +3,7 @@ import { Log, LogLevel } from "../libs/logging/log";
 import { AppWindow } from "./AppWindow";
 import path from "path";
 import { UrlManager } from "../libs/urls/UrlManager";
+import { NetUtils } from "../core/NetUtils";
 
 let SplashWindow: AppWindow | null = null;
 let ParentWindow: AppWindow | null = null;
@@ -50,16 +51,9 @@ app.once('ready', () => {
 
 app.on("web-contents-created", (_, contents) => {
     contents.on("will-navigate", (event, url) => {
-      const parsedUrl = new URL(url);
-      const allowedOrigins = ["discord.com", "terabit.io:8080", "jquery.com"]; // Allow Discord for the Discord invite
-      const allowedBaseDomain = "terabit.io";
-  
-      let CancelNavigation =
-        !allowedOrigins.includes(parsedUrl.hostname) &&
-        !parsedUrl.hostname.endsWith(allowedBaseDomain);
-      if (CancelNavigation) {
-        Log.Write(LogLevel.WARN, `${parsedUrl} (${parsedUrl.origin}) lead to a URL outside of the allowed origin.`);
-        event.preventDefault(); // Stops any urls with origins outside terabit.io or discord.com from loading.
-      }
+        if (!NetUtils.IsAllowedToNavigate(url, ["terabit.io", "discord.com"])) {
+            Log.Write(LogLevel.WARN, `Blocked navigation to ${url}`);
+            event.preventDefault();
+        }
     });
-  });
+});
