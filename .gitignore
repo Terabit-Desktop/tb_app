@@ -20,3 +20,4 @@ app/node_modules/
 junit*.xml
 *.swp
 tslint-rules/
+!build/main-process/preload.js
