@@ -1,4 +1,5 @@
-export class RandMsg {
+export class RandomMessages
+{
     private static messages: string[] = [
         "Hewwo cutie! If you needa little help, and are confuzzled, I'm right here to hewp yew! UwU - Joker119",
         "I want a sloppy toppy from my imaginary girlfriend but she isn't real so cope. - Kali",
@@ -12,9 +13,7 @@ export class RandMsg {
         "Thank you joker ur so daddy. - Kali",
         "I'm a straight male, I don't tuck anything. - Kali",
         "dammit joker, joker broke it again, cope. - cmg"
-    ]
-
-    public static GetRandomMessage(): string {
-        return this.messages[Math.floor(Math.random() * this.messages.length)];
-    }
+    ];
+    
+    public static GetRandomMessage(): string { return this.messages[Math.floor(Math.random() * this.messages.length)]; }
 }
