@@ -1,0 +1,44 @@
+{
+  "name": "terabit_desktop",
+  "productName": "Terabit Desktop",
+  "version": "1.0.0",
+  "description": "Terabit Hosting Management Panel for Desktop.",
+  "main": "./build/main-process/main.js",
+  "scripts": {
+    "build-typescript": "tsc -p ./src/tsconfig.json",
+    "test": "npm run build-typescript && electron --trace-warnings .",
+    "build-win": "npm run build-typescript && electron-packager . --platform=win32 --asar --icon=res/icons/icon --path=out/ --overwrite",
+    "build-linux": "npm run build-typescript && electron-packager . --platform=linux --asar --icon=res/icons/icon --path=out/ --overwrite",
+    "ibuild-win": "npm run build-win && electron-installer-windows --src Terabit Desktop-win32-x64/ --icon res/icons/logo.ico --dest out/releases/",
+    "prettier-check": "prettier --check \"./**/*.{ts,tsx,js}\"",
+    "prettier-fix": "prettier . --write",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ALEXWARELLC/tb_app.git"
+  },
+  "keywords": [
+    "Terabit",
+    "Desktop"
+  ],
+  "author": "ALEXWARELLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ALEXWARELLC/tb_app/issues"
+  },
+  "homepage": "https://github.com/ALEXWARELLC/tb_app#readme",
+  "devDependencies": {
+    "@electron/asar": "^3.2.10",
+    "@eslint/js": "^9.2.0",
+    "electron": "^30.0.2",
+    "electron-installer-dmg": "^4.0.0",
+    "electron-installer-windows": "^3.0.0",
+    "electron-packager": "^17.1.2",
+    "eslint": "^8.57.0",
+    "globals": "^15.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.8.0"
+  }
+}
