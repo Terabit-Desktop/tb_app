@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/ALEXWARELLC/tb_app#readme",
   "devDependencies": {
-    "@electron/asar": "^3.2.9",
-    "electron": "^30.0.1",
+    "@electron/asar": "^3.2.10",
+    "electron": "^30.0.2",
     "electron-installer-dmg": "^4.0.0",
     "electron-installer-windows": "^3.0.0",
     "electron-packager": "^17.1.2",
