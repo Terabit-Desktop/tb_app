@@ -81,7 +81,6 @@ export function BuildMenu(Target: Window): Menu {
         label: "Dashboard",
         click: () => {
             Target.Load("https://gaming.terabit.io/");
-            Window.ApplyCSS(Target);
         },
         accelerator: "CmdOrCtrl+1",
       },

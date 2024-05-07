@@ -59,6 +59,7 @@ app.once("ready", () => {
     show: false,
   });
   ParentWindow.Load(UrlManager.GetUrl());
+  Window.ApplyCSS(ParentWindow.Get()!);
 
   ParentWindow.Get()?.once("ready-to-show", () => {
     SplashWindow?.Close();

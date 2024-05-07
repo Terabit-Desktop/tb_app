@@ -21,6 +21,10 @@ export class Window {
         event.preventDefault();
       }
     });
+
+    this._Target.webContents.on('did-finish-load', () => {
+        Window.ApplyCSS(this._Target!);
+    });
   }
 
   public Get(): BrowserWindow | null {
@@ -33,22 +37,23 @@ export class Window {
     this._Target?.close();
   }
 
-  public static ApplyCSS(Target: Window): void {
-    Target.Get()?.webContents.insertCSS(`
-            body { 
-                --primary: #6f6f6f;
-                --successBackground: #49b920;
-                --secondaryBorder: transparent;
-                --secondaryBackground: #1F1F20;
-                --gray200: #cfcfcf;
-                --gray300: #8f8f8f;
-                --gray400: #e5e5e5;
-                --gray500: #bfbfbf;
-                --gray600: #303030; 
-                --gray700: #202020;
-                --gray700-default: #0f0f0f;
-                --gray800: #101010;
-                --gray900: #101010;
-            }`);
+  public static ApplyCSS(Target: BrowserWindow): void {
+    Target.webContents.insertCSS(`
+        body { 
+            --primary: #6f6f6f;
+            --successBackground: #49b920;
+            --secondaryBorder: transparent;
+            --secondaryBackground: #1F1F20;
+            --gray200: #cfcfcf;
+            --gray300: #8f8f8f;
+            --gray400: #e5e5e5;
+            --gray500: #bfbfbf;
+            --gray600: #303030; 
+            --gray700: #202020;
+            --gray700-default: #0f0f0f;
+            --gray800: #101010;
+            --gray900: #101010;
+        }
+    `);
   }
 }
