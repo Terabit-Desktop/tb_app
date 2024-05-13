@@ -1,0 +1,43 @@
+# WRITTEN BY: GITHUB ACTIONS & ALEXWARELLC.
+# ANY CHANGES TO GITHUB WORKFLOWS GOES THROUGH ALEXWARELLC!
+
+name: NodeJS Project Build CI (Legacy)
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm install
+      - run: npm run prettier-fix
+      - run: npm run build-linux --if-present
+
+  build-win:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm install
+      - run: npm run prettier-fix
+      - run: npm run build-win --if-present
