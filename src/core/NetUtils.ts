@@ -9,6 +9,7 @@ export class NetUtils {
 
     const ParsedUrl = parse(Target);
     const Host: string | null = ParsedUrl.hostname;
-    return AllowedHosts.includes(Host ?? "");
+    console.log("Parsed hostname:", Host); // Add this line for debugging
+    return AllowedHosts.includes(Host || "");
   }
 }

@@ -71,7 +71,7 @@ app.once("ready", () => {
 
 app.on("web-contents-created", (_, contents) => {
   contents.on("will-navigate", (event, url) => {
-    if (!NetUtils.IsAllowedToNavigate(url, ["terabit.io", "discord.com"])) {
+    if (!NetUtils.IsAllowedToNavigate(url, ["terabit.io", "my.terabit.io", "status.terabit.io", "help.terabit.io","discord.com"])) {
       Log.Write(LogLevel.WARN, `Blocked navigation to ${url}`);
       event.preventDefault();
     }
