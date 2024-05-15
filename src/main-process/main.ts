@@ -35,25 +35,35 @@ app.once("ready", () => {
 
   // Initialize UI
 
-  Log.Write(LogLevel.INFO, `Loading: ${ApplicationInfo.Name} by ${ApplicationInfo.Author} | ${ApplicationInfo.Version}...`);
-
-    // --- Configure IPC ---
-    ipcMain.on("get-random-quote", RandomMessages.GetRandomMessage);
+  Log.Write(LogLevel.INFO, `Loading: ${ApplicationInfo.Name} by ${ApplicationInfo.Author} | ${ApplicationInfo.Version} | ${ApplicationInfo.Edition}...`);
 
   SplashWindow = new Window({
     width: 600,
     height: 320,
     frame: false,
     resizable: false,
-    show: true,
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: path.join(__dirname, "preload.js"), // Since we're building TypeScript to JavaScript, we'll need to use the JavaScript file.
+    }
   });
   SplashWindow.Load(`${__dirname}/../ui/splash.html`);
+
+  // Send IPC.
+  // SplashWindow.Get()?.webContents.send("GetEditionString", ApplicationInfo.Edition.toString()); This one does nothing at the moment.
+  SplashWindow.Get()?.webContents.send("GetRandomQuote", RandomMessages.GetRandomMessage());
+  SplashWindow.Get()?.webContents.send("GetApplicationVersion", ApplicationInfo.Version);
+
+  SplashWindow.Get()?.once("ready-to-show", () => {
+    SplashWindow?.Get()?.show();
+  });
 
   app.applicationMenu = null;
 
   ParentWindow = new Window({
-    width: 1280,
-    height: 720,
+    minWidth: 1280,
+    minHeight: 720,
     backgroundMaterial: "acrylic",
     maximizable: true,
     show: false,
@@ -71,7 +81,7 @@ app.once("ready", () => {
 
 app.on("web-contents-created", (_, contents) => {
   contents.on("will-navigate", (event, url) => {
-    if (!NetUtils.IsAllowedToNavigate(url, ["terabit.io", "my.terabit.io", "status.terabit.io", "help.terabit.io","discord.com"])) {
+    if (!NetUtils.IsAllowedToNavigate(url, ["terabit.io", "my.terabit.io", "status.terabit.io", "help.terabit.io", "discord.com"])) {
       Log.Write(LogLevel.WARN, `Blocked navigation to ${url}`);
       event.preventDefault();
     }
