@@ -1,4 +1,6 @@
 name: Update CONTRIBUTORS.md
+permissions:
+      contents: write
 on:
   schedule:
     - cron: "0 0 * * *"
