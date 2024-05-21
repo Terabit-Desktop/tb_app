@@ -30,15 +30,15 @@
   "homepage": "https://github.com/ALEXWARELLC/tb_app#readme",
   "devDependencies": {
     "@electron/asar": "^3.2.10",
-    "@eslint/js": "^9.2.0",
+    "@eslint/js": "^9.3.0",
     "electron": "^30.0.6",
     "electron-installer-dmg": "^4.0.0",
     "electron-installer-windows": "^3.0.0",
     "electron-packager": "^17.1.2",
     "eslint": "^8.57.0",
-    "globals": "^15.2.0",
+    "globals": "^15.3.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.9.0"
+    "typescript-eslint": "^7.10.0"
   }
 }

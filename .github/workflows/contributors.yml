@@ -1,4 +1,5 @@
 name: Update CONTRIBUTORS.md
+permissions: { actions: write }
 on:
   schedule:
     - cron: "0 0 * * *"
