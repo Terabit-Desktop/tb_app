@@ -30,7 +30,7 @@
   "devDependencies": {
     "@electron/asar": "^3.2.10",
     "@eslint/js": "^9.3.0",
-    "electron": "^30.0.6",
+    "electron": "^30.0.8",
     "electron-installer-dmg": "^4.0.0",
     "electron-installer-windows": "^3.0.0",
     "electron-packager": "^17.1.2",
