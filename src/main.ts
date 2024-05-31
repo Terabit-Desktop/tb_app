@@ -4,7 +4,7 @@
 import { Logger, LogLevel } from "./core/Debugging/Logger";
 import { SoftwareAnalyser } from "./core/SoftwareAnalyser";
 import { Window, WindowEventHandlers } from "./core/UI/Window";
-import { app, BrowserWindow } from "electron";
+import { app } from "electron";
 import {GetFixedUrl, ServiceType} from "./core/UI/UrlValidator";
 
 let MainWindow: Window | undefined;

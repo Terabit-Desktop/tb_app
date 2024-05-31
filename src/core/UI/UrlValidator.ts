@@ -1,5 +1,3 @@
-import { parse } from "url";
-
 export function CanNavigate(Target: string, AllowedHosts: string[]): boolean {
   if (AllowedHosts.length == 0) return false; // You can't exactly run Url Navigation checks if there is no allowed hosts.
   const ParsedUrl = new URL(Target);
