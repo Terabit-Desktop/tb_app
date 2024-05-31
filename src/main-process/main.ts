@@ -64,7 +64,8 @@ app.once("ready", () => {
   ParentWindow = new Window({
     minWidth: 1280,
     minHeight: 720,
-    backgroundMaterial: "acrylic",
+    width: 1280,
+    height: 720,
     maximizable: true,
     show: false,
   });
