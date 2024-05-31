@@ -21,3 +21,4 @@ junit*.xml
 *.swp
 tslint-rules/
 build/main-process/preload.js
+package-lock.json
