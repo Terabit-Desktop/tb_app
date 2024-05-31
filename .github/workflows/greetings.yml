@@ -9,8 +9,8 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-    - uses: actions/first-interaction@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Thanks for taking the time to make an issue. A developer will be with you ASAP. \n #### PLEASE NOTE: If we deem your issue to not include enough information, we may close it as not-planned."
-        pr-message: "Hello! Thanks for making a Pull Request!\n Since you're new, you'll need to read the rules & guidelines & ensure your Pull Request is still valid. /n Thanks again for contributing to Terabit Desktop."
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: "Thanks for taking the time to make an issue. A developer will be with you ASAP. \n #### PLEASE NOTE: If we deem your issue to not include enough information, we may close it as not-planned."
+          pr-message: "Hello! Thanks for making a Pull Request!\n Since you're new, you'll need to read the rules & guidelines & ensure your Pull Request is still valid. /n Thanks again for contributing to Terabit Desktop."

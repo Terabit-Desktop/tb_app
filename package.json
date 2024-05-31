@@ -3,11 +3,10 @@
   "productName": "Terabit Desktop",
   "version": "1.0.0",
   "description": "Terabit Hosting Management Panel for Desktop.",
-  "main": "./build/main-process/main.js",
+  "main": "./build/main.js",
   "scripts": {
     "build-typescript": "tsc -p ./src/tsconfig.json",
     "test": "npm run build-typescript && electron --trace-warnings .",
-    "test:dev": "",
     "build:dev": "npm run build-typescript && electron-packager . --platform=win32 --asar --icon=res/icons/icon --path=out/ --overwrite",
     "prettier-check": "prettier --check \"./**/*.{ts,tsx,js}\"",
     "prettier-fix": "prettier . --write",
@@ -39,5 +38,8 @@
     "prettier": "^3.2.5",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.10.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.2"
   }
 }

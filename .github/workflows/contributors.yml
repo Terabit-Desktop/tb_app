@@ -11,11 +11,11 @@ jobs:
       - uses: minicli/action-contributors@v3.3
         name: "Update CONTRIBUTORS.md file"
         env:
-          CONTRIB_REPOSITORY: 'https://github.com/Terabit-Desktop/tb_app'
-          CONTRIB_OUTPUT_FILE: 'CONTRIBUTORS.md'
+          CONTRIB_REPOSITORY: "https://github.com/Terabit-Desktop/tb_app"
+          CONTRIB_OUTPUT_FILE: "CONTRIBUTORS.md"
       - name: Commit changes
         uses: test-room-7/action-update-file@v1
         with:
-          file-path: 'CONTRIBUTORS.md'
+          file-path: "CONTRIBUTORS.md"
           commit-msg: Update Contributors
           github-token: ${{ secrets.GITHUB_TOKEN }}
