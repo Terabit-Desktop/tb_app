@@ -5,6 +5,10 @@ on:
     - cron: "0 0 * * *"  # Runs daily at midnight
   workflow_dispatch:      # Allows manual triggering
 
+permissions:
+  actions: write
+  contents: write
+
 jobs:
   update_contributors:
     runs-on: ubuntu-latest
