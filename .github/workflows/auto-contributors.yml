@@ -1,0 +1,42 @@
+name: Update CONTRIBUTORS.md
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs daily at midnight
+  workflow_dispatch:      # Allows manual triggering
+
+jobs:
+  update_contributors:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Get Contributors
+        id: get_contributors
+        run: |
+          CONTRIBUTORS=$(curl -s https://api.github.com/repos/Terabit-Desktop/tb_app/contributors | jq -r '.[].login')
+          echo "${CONTRIBUTORS}" > CONTRIBUTORS.md
+        
+      - name: Commit Changes
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add CONTRIBUTORS.md
+          git commit -m "Update CONTRIBUTORS.md"
+        
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
