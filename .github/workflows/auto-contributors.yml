@@ -1,8 +1,7 @@
 name: Update CONTRIBUTORS.md
 
 on:
-  schedule:
-    - cron: "0 0 * * *"  # Runs daily at midnight
+  push:
   workflow_dispatch:      # Allows manual triggering
 
 permissions:
