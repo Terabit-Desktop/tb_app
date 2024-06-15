@@ -1,7 +1,6 @@
 name: Update CONTRIBUTORS.md
 
 on:
-  push:
   workflow_dispatch:      # Allows manual triggering
 
 permissions:
