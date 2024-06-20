@@ -1,6 +1,0 @@
-build/
-content/
-node_modules/
-src/res/
-*.json
-**/*.md
